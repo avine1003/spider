@@ -76,7 +76,6 @@ def get_art_info(soup):
         art_dict['star'] = star
         art_dict['title'] = title
         art_dict['price'] = price
-        # print(list(art_dict.keys()))
         mysql_command.insert_data(art_dict)
     mysql_command.close_mysql()
 
