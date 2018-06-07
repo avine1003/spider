@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 __author__ = "wuyou"
-__date__ = "2018/6/6 15:31"
+__date__ = "2018/6/6 20:31"
 
 import requests
 from bs4 import BeautifulSoup as BSp
@@ -8,6 +8,7 @@ import json
 from queue import Queue
 import pymysql
 from threading import Thread
+import time
 
 
 def insert_data(my_dict):
@@ -27,10 +28,11 @@ def insert_data(my_dict):
         result = cursor.execute(sql)
         db_conn.commit()
         if result:
-            print('插入成功')
+            pass
     except:
         db_conn.rollback()
-    # cursor.close()
+        print('{} 插入失败'.format(list(my_dict.values())))
+    cursor.close()
     db_conn.close()
 
 
@@ -121,4 +123,7 @@ def main():
 
 
 if __name__ == '__main__':
+    start = time.time()
     main()
+    end = time.time()
+    print('总耗时: %s' % (end - start))
