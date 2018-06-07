@@ -33,9 +33,9 @@ Base = declarative_base()
 class Book(Base):
     __tablename__ = 'book'
     id = Column(Integer, primary_key=True)
-    book_title = Column(String(200))
-    image_url = Column(String(200))
-    book_url = Column(String(200))
+    book_title = Column(String(300))
+    image_url = Column(String(300))
+    book_url = Column(String(300))
     book_rate = Column(String(20))
     book_price = Column(String(20))
 
@@ -48,6 +48,8 @@ Base.metadata.create_all(engine)
 
 
 def create_session():
+    #  Session的主要目的是建立与数据库的会话，它维护你加载和关联的所有数据库对象。
+    #  它是数据库查询（Query）的一个入口
     Session = sessionmaker(bind=engine)
     session = Session()
     return session
@@ -74,11 +76,11 @@ def query_record(session, Cls):
     return session.query(Cls).all()
 
 
-if __name__ == '__main__':
-    session = create_session()
-    records = query_record(session, Book)
-    for rec in records:
-        print(rec.book_title)
+# if __name__ == '__main__':
+    # session = create_session()
+    # records = query_record(session, Book)
+    # for rec in records:
+    #     print(rec.book_title)
 
 
 
