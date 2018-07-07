@@ -7,7 +7,11 @@ from selenium.webdriver.support.wait import WebDriverWait
 from pyquery import PyQuery as pd
 import pymongo
 
-browser = webdriver.Chrome()
+chrome_options = webdriver.ChromeOptions()
+# 浏览器配置Headless无界面模式
+chrome_options.add_argument('--headless')
+browser = webdriver.Chrome(chrome_options=chrome_options)
+
 wait = WebDriverWait(browser,10)
 KEYWORD = 'iPhone'
 
